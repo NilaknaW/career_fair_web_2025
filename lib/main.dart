@@ -34,14 +34,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       // appBar: AppBar(
       // ),
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            _background(context),
-            _content(context),
-          ],
-        ),
+      body: Stack(
+        children: [
+          _background(context),
+          _content(context),
+        ],
       ),
       backgroundColor: Colors.white,
     );
@@ -52,18 +49,23 @@ Widget _background(BuildContext context) {
   double screenHeight = MediaQuery.of(context).size.height;
   return Stack(
     children: [
-      Align(
-        alignment: Alignment.topLeft,
+      Positioned(
+        // alignment: Alignment.topLeft,
+        top: 0,
+        left: 0,
         child: Image.asset(
           'assets/images/left_pic_bg.png',
           // fit: BoxFit.fitHeight,
           height: screenHeight * 0.8,
         ),
       ),
-      Align(
-        alignment: Alignment.topRight,
+      Positioned(
+        // alignment: Alignment.topRight,
+        top: 0,
+        right: 0,
         child: Image.asset(
           'assets/images/right_pic_bg.png',
+          // fit: BoxFit.fitHeight,
           height: screenHeight * 0.8,
         ),
       ),
@@ -219,7 +221,7 @@ Widget _reachOut(BuildContext context) {
 Widget _boxedText(String text, double screenWidth) {
   return Container(
     padding: EdgeInsets.all(6),
-    width: screenWidth * 0.8,
+    width: screenWidth * 0.75,
     // margin: EdgeInsets.all(20),
     decoration: BoxDecoration(
       gradient: RadialGradient(
