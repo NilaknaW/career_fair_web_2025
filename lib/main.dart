@@ -142,7 +142,7 @@ Widget _content(BuildContext context) {
 }
 
 Widget _ending(BuildContext context) {
-  double screenHeight = MediaQuery.of(context).size.height;
+  // double screenHeight = MediaQuery.of(context).size.height;
   double screenWidth = MediaQuery.of(context).size.width;
   return Container(
     alignment: Alignment.center,
@@ -174,13 +174,11 @@ Widget _ending(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _reachOut(context),
-                Align(
-                  alignment: Alignment.bottomCenter,
+                SizedBox(
+                  width: 200,
                   child: Image.asset(
                     'assets/images/entc_logo.png',
-                    // height: screenHeight * 0.1,
-                    // fit: BoxFit.fitWidth,
-                    width: screenWidth * 0.6,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ],
