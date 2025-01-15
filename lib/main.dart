@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const MainApp());
@@ -37,7 +38,18 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           _background(context),
-          _content(context),
+          Column(
+            children: [
+              Expanded(
+                flex: 8,
+                child: _content(context),
+              ),
+              Expanded(
+                flex: 2,
+                child: _ending(context),
+              ),
+            ],
+          )
         ],
       ),
       backgroundColor: Colors.white,
@@ -49,25 +61,29 @@ Widget _background(BuildContext context) {
   double screenHeight = MediaQuery.of(context).size.height;
   return Stack(
     children: [
-      Positioned(
-        // alignment: Alignment.topLeft,
-        top: 0,
-        left: 0,
-        child: Image.asset(
-          'assets/images/left_pic_bg.png',
-          // fit: BoxFit.fitHeight,
-          height: screenHeight * 0.8,
-        ),
-      ),
-      Positioned(
-        // alignment: Alignment.topRight,
-        top: 0,
-        right: 0,
-        child: Image.asset(
-          'assets/images/right_pic_bg.png',
-          // fit: BoxFit.fitHeight,
-          height: screenHeight * 0.8,
-        ),
+      Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Image.asset(
+                'assets/images/left_pic_bg.png',
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Image.asset(
+                'assets/images/right_pic_bg.png',
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          ),
+        ],
       ),
       Align(
         alignment: Alignment.bottomCenter,
@@ -80,24 +96,10 @@ Widget _background(BuildContext context) {
                 Color(0xFF031e4b),
               ],
               center: Alignment.center,
-              radius: 2.5,
+              radius: 1,
               stops: [0.5, 1.0],
             ),
           ),
-        ),
-      ),
-      Align(
-        alignment: Alignment.bottomLeft,
-        child: Image.asset(
-          'assets/images/left_arrow.png',
-          height: screenHeight * 0.3,
-        ),
-      ),
-      Align(
-        alignment: Alignment.bottomRight,
-        child: Image.asset(
-          'assets/images/right_arrow.png',
-          height: screenHeight * 0.3,
         ),
       ),
     ],
@@ -130,15 +132,69 @@ Widget _content(BuildContext context) {
             child: Center(child: _countdown()),
           ),
           _boxedText(
-              'Interested in participating as an organization ? ', screenWidth),
-          _reachOut(context),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Image.asset('assets/images/entc_logo.png',
-                height: screenHeight * 0.1),
+            'Interested in participating as an organization ? ',
+            screenWidth,
           ),
         ],
       ),
+    ),
+  );
+}
+
+Widget _ending(BuildContext context) {
+  double screenHeight = MediaQuery.of(context).size.height;
+  double screenWidth = MediaQuery.of(context).size.width;
+  return Container(
+    alignment: Alignment.center,
+    width: screenWidth,
+    decoration: BoxDecoration(
+      gradient: RadialGradient(
+        colors: [
+          Color(0xFF094c69),
+          Color(0xFF031e4b),
+        ],
+        center: Alignment.center,
+        radius: 2.5,
+        stops: [0.5, 1.0],
+      ),
+    ),
+    child: Row(
+      children: [
+        Expanded(
+          flex: 1,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Image.asset('assets/images/left_arrow.png'),
+          ),
+        ),
+        Expanded(
+          flex: 8,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _reachOut(context),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset(
+                    'assets/images/entc_logo.png',
+                    // height: screenHeight * 0.1,
+                    // fit: BoxFit.fitWidth,
+                    width: screenWidth * 0.6,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Image.asset('assets/images/right_arrow.png'),
+          ),
+        ),
+      ],
     ),
   );
 }
@@ -230,7 +286,7 @@ Widget _boxedText(String text, double screenWidth) {
           Color(0xFF031e4b),
         ],
         center: Alignment.center,
-        radius: 1.5,
+        radius: 1,
         // stops: [0.5, 1.0],
       ),
     ),
@@ -251,34 +307,3 @@ void _launchMailto() async {
     // await Clipboard.setData(ClipboardData(text: targetEmail));
   }
 }
-
-        // Expanded(
-        //   flex: 2,
-        //   child: Align(
-        //       alignment: Alignment.bottomRight,
-        //       child: Icon(
-        //         Icons.email,
-        //         color: Colors.white,
-        //         size: 40,
-        //       )),
-        // ),
-        // Expanded(
-        //     flex: 8,
-        //     child: Column(
-        //       children: [
-        //         Text('Reach out to us at',
-        //             style: GoogleFonts.poppins(
-        //                 fontSize: 20,
-        //                 // fontWeight: FontWeight.bold,
-        //                 color: Color(0xFFFFdc45)),
-        //             textAlign: TextAlign.center),
-        //         TextButton(
-        //             onPressed: _launchMailto,
-        //             child: Text('careerfair.entc.uom@gmail.com',
-        //                 style: GoogleFonts.poppins(
-        //                     fontSize: 12,
-        //                     // fontWeight: FontWeight.bold,
-        //                     color: Colors.white),
-        //                 textAlign: TextAlign.center)),
-        //       ],
-        //     ),),

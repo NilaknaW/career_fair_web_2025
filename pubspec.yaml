@@ -12,6 +12,7 @@ dependencies:
   google_fonts: ^6.2.1
   url_launcher: ^6.1.11
   flutter_timer_countdown: ^1.0.7
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:
