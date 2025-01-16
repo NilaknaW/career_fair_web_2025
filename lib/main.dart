@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:galleryimage/galleryimage.dart';
+
+final GlobalKey _galleryKey = GlobalKey();
 
 void main() {
   runApp(const MainApp());
@@ -32,6 +33,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       // appBar: AppBar(
       // ),
@@ -49,12 +53,40 @@ class _HomePageState extends State<HomePage> {
                 child: _ending(context),
               ),
             ],
-          )
+          ),
+          _galleryButton(),
         ],
       ),
       backgroundColor: Colors.white,
     );
   }
+} // Key to identify the gallery section
+
+Widget _galleryButton() {
+  return Positioned(
+    top: 10.0,
+    right: 10.0,
+    child: OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Color(0xFF020237),
+        overlayColor: Color(0xFF020237),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+      onPressed: () {
+        // Scroll to the gallery section
+        Scrollable.ensureVisible(
+          _galleryKey.currentContext!,
+          duration: Duration(seconds: 1),
+          curve: Curves.easeInOut,
+        );
+      },
+      // child: Icon(Icons.photo_album, color: Colors.white),
+      child: Text('Gallery', style: TextStyle(color: Color(0xFF020237))),
+    ),
+  );
 }
 
 Widget _background(BuildContext context) {
@@ -107,35 +139,54 @@ Widget _background(BuildContext context) {
 }
 
 Widget _content(BuildContext context) {
+  return SingleChildScrollView(
+    child: Column(
+      children: [
+        _mainContent(context),
+        _gallery(context),
+      ],
+    ),
+  );
+}
+
+Widget _mainContent(BuildContext context) {
   double screenHeight = MediaQuery.of(context).size.height;
   double screenWidth = MediaQuery.of(context).size.width;
 
-  return SingleChildScrollView(
-    padding: EdgeInsets.zero,
-    child: Center(
-      child: Column(
-        children: [
-          SizedBox(height: 40),
-          Text('UNIVERISTY OF MORATUWA',
-              style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF020237)),
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center),
-          Image.asset('assets/images/logo_cf.png', height: screenHeight * 0.36),
-          _boxedText('Unfolding on 30th of January 2025 at ENTC', screenWidth),
-          Container(
-            // height: screenHeight * 0.2,
-            color: Colors.white,
-            width: screenWidth * 0.75,
-            child: Center(child: _countdown()),
-          ),
-          _boxedText(
-            'Interested in participating as an organization ? ',
-            screenWidth,
-          ),
-        ],
+  return Container(
+    height: screenHeight * 0.8,
+    child: FittedBox(
+      // padding: EdgeInsets.zero,
+      fit: BoxFit.fitHeight,
+      child: Center(
+        child: Column(
+          children: [
+            SizedBox(height: 40),
+            Text('UNIVERISTY OF MORATUWA',
+                style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF020237)),
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center),
+            Image.asset(
+              'assets/images/logo_cf.png',
+              height: screenHeight * 0.36,
+              width: screenWidth,
+            ),
+            _boxedText('On 30th of January 2025\nat ENTC', screenWidth),
+            Container(
+              // height: screenHeight * 0.2,
+              color: Colors.white,
+              width: screenWidth * 0.75,
+              child: Center(child: _countdown()),
+            ),
+            _boxedText(
+              'Want to Participate ? ',
+              screenWidth,
+            ),
+          ],
+        ),
       ),
     ),
   );
@@ -168,8 +219,9 @@ Widget _ending(BuildContext context) {
           ),
         ),
         Expanded(
-          flex: 8,
-          child: SingleChildScrollView(
+          flex: 6,
+          child: FittedBox(
+            fit: BoxFit.fitHeight,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -198,7 +250,7 @@ Widget _ending(BuildContext context) {
 }
 
 Widget _countdown() {
-  DateTime endDate = DateTime(2025, 1, 29, 0, 0, 0);
+  DateTime endDate = DateTime(2025, 1, 30, 0, 0, 0);
   return FittedBox(
     fit: BoxFit.scaleDown,
     child: TimerCountdown(
@@ -228,7 +280,7 @@ Widget _countdown() {
 
 Widget _reachOut(BuildContext context) {
   return Container(
-    // padding: EdgeInsets.all(6),
+    padding: EdgeInsets.all(6),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -253,10 +305,7 @@ Widget _reachOut(BuildContext context) {
             TextButton(
               onPressed: _launchMailto,
               child: Text('careerfair.entc.uom@gmail.com',
-                  style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      // fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                  style: GoogleFonts.poppins(fontSize: 12, color: Colors.white),
                   textAlign: TextAlign.start),
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero, // Removes button padding
@@ -276,7 +325,6 @@ Widget _boxedText(String text, double screenWidth) {
   return Container(
     padding: EdgeInsets.all(6),
     width: screenWidth * 0.75,
-    // margin: EdgeInsets.all(20),
     decoration: BoxDecoration(
       gradient: RadialGradient(
         colors: [
@@ -284,8 +332,8 @@ Widget _boxedText(String text, double screenWidth) {
           Color(0xFF031e4b),
         ],
         center: Alignment.center,
-        radius: 1,
-        // stops: [0.5, 1.0],
+        radius: 2,
+        stops: [0.5, 1.0],
       ),
     ),
     child: Text(text,
@@ -304,4 +352,121 @@ void _launchMailto() async {
   } catch (e) {
     // await Clipboard.setData(ClipboardData(text: targetEmail));
   }
+}
+
+Widget _gallery(context) {
+  return Column(
+    key: _galleryKey,
+    children: [
+      SizedBox(height: 20),
+      Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          // color: Colors.blueGrey,
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 181, 216, 231),
+            Color.fromARGB(255, 157, 184, 232),
+          ]),
+        ),
+        child: Column(
+          children: [
+            Text(
+              'Highlights from the previous year',
+              style: GoogleFonts.poppins(
+                fontSize: 28,
+                // fontWeight: FontWeight.bold,
+                color: Color(0xFF020237),
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            _photoViewer(),
+          ],
+        ),
+      )
+    ],
+  );
+}
+
+Widget _photoViewer() {
+  final int imagesPerPage = 10; // 2 rows * 5 columns
+  int currentPage = 0;
+  List<String> imagePaths = List.generate(
+    28,
+    (index) => 'assets/images/gallery/${index + 1}.jpeg',
+  );
+
+  List<String> currentImages(int currentPage) {
+    int startIndex = 0; // Start from the beginning for "Show Less"
+    int endIndex = (currentPage + 1) * imagesPerPage;
+    return imagePaths.sublist(
+      startIndex,
+      endIndex > imagePaths.length ? imagePaths.length : endIndex,
+    );
+  }
+
+  return StatefulBuilder(
+    builder: (BuildContext context, StateSetter setState) {
+      return Column(
+        children: [
+          GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 5,
+              crossAxisSpacing: 4.0,
+              mainAxisSpacing: 4.0,
+            ),
+            itemCount: currentImages(currentPage).length,
+            itemBuilder: (context, index) {
+              return AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.asset(
+                  currentImages(currentPage)[index],
+                  fit: BoxFit.cover,
+                ),
+              );
+            },
+          ),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              if (currentPage > 0)
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF094c69),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      currentPage = 0; // Reset to the first page
+                    });
+                  },
+                  child: Text('Show Less'),
+                ),
+              if ((currentPage + 1) * imagesPerPage < imagePaths.length)
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF094c69),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      if ((currentPage + 1) * imagesPerPage <
+                          imagePaths.length) {
+                        currentPage++;
+                      }
+                    });
+                  },
+                  child: Text('Show More'),
+                ),
+            ],
+          ),
+        ],
+      );
+    },
+  );
 }
