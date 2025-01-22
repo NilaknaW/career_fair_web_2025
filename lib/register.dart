@@ -1,23 +1,22 @@
 // import 'package:web_video_player/player.dart';
 // import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'main.dart';
 
 class RegisterWidget extends StatelessWidget {
   final GlobalKey registerKey;
 
-  const RegisterWidget({Key? key, required this.registerKey}) : super(key: key);
+  const RegisterWidget({super.key, required this.registerKey});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       key: registerKey,
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
@@ -113,35 +112,35 @@ Widget _recruitpdf(context) {
   );
 }
 
-Widget customCard(element1, button_text, button_link) {
+Widget customCard(element1, buttonText, buttonLink) {
   return Card.outlined(
     borderOnForeground: true,
     color: const Color.fromARGB(0, 231, 229, 229),
     child: Column(
       children: [
         element1,
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         ElevatedButton(
-          onPressed: () => launchURL(button_link),
+          onPressed: () => launchURL(buttonLink),
+          style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all(
+              // const Color.fromARGB(255, 159, 208, 230),
+              Colors.white.withOpacity(0.8),
+            ),
+            // padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+          ),
           // child: Icon(Icons.photo_album, color: Colors.white),
           child: Text(
-            button_text,
-            style: TextStyle(
+            buttonText,
+            style: const TextStyle(
               color: Color(0xFF020237),
               // fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
             textAlign: TextAlign.center,
           ),
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
-              // const Color.fromARGB(255, 159, 208, 230),
-              Colors.white.withOpacity(0.8),
-            ),
-            // padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-          ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     ),
   );

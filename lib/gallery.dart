@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:video_player/video_player.dart';
 
 class GalleryWidget extends StatelessWidget {
   final GlobalKey galleryKey;
 
-  const GalleryWidget({Key? key, required this.galleryKey}) : super(key: key);
+  const GalleryWidget({super.key, required this.galleryKey});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       key: galleryKey,
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(
           width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(colors: [
+            gradient: const LinearGradient(colors: [
               // Color.fromARGB(255, 159, 208, 230),
               Color(0xFF031e4b),
               Color.fromARGB(255, 157, 147, 245),
@@ -56,9 +54,8 @@ Widget _photoViewer(context) {
   } else {
     crossAxisCountResponsive = 2;
   }
-  ;
 
-  final int imagesPerPage = 10; // 2 rows * 5 columns
+  const int imagesPerPage = 10; // 2 rows * 5 columns
   int currentPage = 0;
   List<String> imagePaths = List.generate(
     28,
@@ -80,7 +77,7 @@ Widget _photoViewer(context) {
         children: [
           GridView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCountResponsive,
               crossAxisSpacing: 4.0,
@@ -97,7 +94,7 @@ Widget _photoViewer(context) {
               );
             },
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -108,7 +105,7 @@ Widget _photoViewer(context) {
                       currentPage = 0; // Reset to the first page
                     });
                   },
-                  child: Text('Show Less'),
+                  child: const Text('Show Less'),
                 ),
               if ((currentPage + 1) * imagesPerPage < imagePaths.length)
                 TextButton(
@@ -124,7 +121,7 @@ Widget _photoViewer(context) {
                       }
                     });
                   },
-                  child: Text('Show More'),
+                  child: const Text('Show More'),
                 ),
             ],
           ),

@@ -4,12 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 
 class HomeWidget extends StatelessWidget {
+  const HomeWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
-    return Container(
+    return SizedBox(
       height: screenHeight * 0.8,
       child: FittedBox(
         // padding: EdgeInsets.zero,
@@ -22,7 +24,7 @@ class HomeWidget extends StatelessWidget {
                   style: GoogleFonts.poppins(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF020237)),
+                      color: const Color(0xFF020237)),
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center),
               Image.asset(
@@ -73,10 +75,13 @@ Widget registerButton() {
       // Scroll to the gallery section
       Scrollable.ensureVisible(
         registerKey.currentContext!,
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         curve: Curves.easeInOut,
       );
     },
+    style: ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(Colors.white.withOpacity(0.4)),
+    ),
     // child: Icon(Icons.photo_album, color: Colors.white),
     child: Text(
       'Register!',
@@ -85,9 +90,6 @@ Widget registerButton() {
         fontWeight: FontWeight.bold,
         color: Colors.white,
       ),
-    ),
-    style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(Colors.white.withOpacity(0.4)),
     ),
   );
 }
@@ -101,7 +103,7 @@ Widget _registerElement() {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             registerText(),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             registerButton(),
           ],
         );
@@ -126,21 +128,21 @@ Widget _countdown() {
       format: CountDownTimerFormat.daysHoursMinutesSeconds,
       endTime: endDate,
       onEnd: () {
-        print("Today is the day!");
+        // print("Today is the day!");
       },
       timeTextStyle: GoogleFonts.oswald(
         fontSize: 60,
         fontWeight: FontWeight.bold,
-        color: Color(0xFF020237),
+        color: const Color(0xFF020237),
       ),
       colonsTextStyle: GoogleFonts.oswald(
         fontSize: 40,
         // fontWeight: FontWeight.bold,
-        color: Color(0xFF020237),
+        color: const Color(0xFF020237),
       ),
       descriptionTextStyle: GoogleFonts.oswald(
         fontSize: 18,
-        color: Color(0xFF020237),
+        color: const Color(0xFF020237),
       ),
       spacerWidth: 20,
     ),
@@ -149,9 +151,9 @@ Widget _countdown() {
 
 Widget _boxedText(boxContent, double screenWidth) {
   return Container(
-    padding: EdgeInsets.all(6),
+    padding: const EdgeInsets.all(6),
     width: screenWidth * 0.75,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       gradient: RadialGradient(
         colors: [
           Color(0xFF094c69),

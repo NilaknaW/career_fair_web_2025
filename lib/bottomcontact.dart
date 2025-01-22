@@ -4,6 +4,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'main.dart';
 
 class ContactsWidget extends StatelessWidget {
+  const ContactsWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -42,9 +44,9 @@ class ContactsWidget extends StatelessWidget {
                     onPressed: () => launchURL("https://ent.uom.lk/"),
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.transparent),
+                          WidgetStateProperty.all(Colors.transparent),
                       shadowColor:
-                          MaterialStateProperty.all(Colors.transparent),
+                          WidgetStateProperty.all(Colors.transparent),
                     ),
                     child: SizedBox(
                       width: 200,
@@ -73,12 +75,12 @@ class ContactsWidget extends StatelessWidget {
 
 Widget _reachOut(BuildContext context) {
   return Container(
-    padding: EdgeInsets.all(6),
+    padding: const EdgeInsets.all(6),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Icon(
+        const Icon(
           Icons.email,
           color: Colors.white,
           size: 50,
@@ -92,23 +94,23 @@ Widget _reachOut(BuildContext context) {
               style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFFFdc45)),
+                  color: const Color(0xFFFFdc45)),
             ),
             TextButton(
               onPressed: _launchMailto,
-              child: Text('careerfair.entc.uom@gmail.com',
-                  style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.white),
-                  textAlign: TextAlign.start),
               style: TextButton.styleFrom(
                 padding: EdgeInsets.zero, // Removes button padding
                 minimumSize: Size.zero, // Removes minimum size constraints
                 tapTargetSize:
                     MaterialTapTargetSize.shrinkWrap, // Shrinks the touch area
               ),
+              child: const Text('careerfair.entc.uom@gmail.com',
+                  style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.white,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.white),
+                  textAlign: TextAlign.start),
             ),
           ],
         ),

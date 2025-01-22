@@ -22,11 +22,11 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ENTC Career Fair',
-      home: HomePage(),
+      home: const HomePage(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Color(0xFF020237),
-          secondary: Color(0xFF094c69),
+          primary: const Color(0xFF020237),
+          secondary: const Color(0xFF094c69),
         ),
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
@@ -35,7 +35,7 @@ class MainApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 flex: 8,
                 child: content(context),
               ),
-              Expanded(
+              const Expanded(
                 flex: 2,
                 child: ContactsWidget(),
               ),
@@ -99,59 +99,59 @@ List<Widget> _appBarButtons = [
       // Scroll to the gallery section
       Scrollable.ensureVisible(
         registerKey.currentContext!,
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         curve: Curves.easeInOut,
       );
     },
-    // child: Icon(Icons.photo_album, color: Colors.white),
-    child: Text('Register', style: TextStyle(color: Color(0xFF020237))),
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(Colors.white.withOpacity(0.4)),
+      backgroundColor: WidgetStateProperty.all(Colors.white.withOpacity(0.4)),
     ),
+    // child: Icon(Icons.photo_album, color: Colors.white),
+    child: const Text('Register', style: TextStyle(color: Color(0xFF020237))),
   ),
-  SizedBox(width: 10),
+  const SizedBox(width: 10),
   TextButton(
     onPressed: () {
       // Scroll to the gallery section
       Scrollable.ensureVisible(
         galleryKey.currentContext!,
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         curve: Curves.easeInOut,
       );
     },
-    // child: Icon(Icons.photo_album, color: Colors.white),
-    child: Text('Gallery', style: TextStyle(color: Color(0xFF020237))),
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(Colors.white.withOpacity(0.4)),
+      backgroundColor: WidgetStateProperty.all(Colors.white.withOpacity(0.4)),
     ),
+    // child: Icon(Icons.photo_album, color: Colors.white),
+    child: const Text('Gallery', style: TextStyle(color: Color(0xFF020237))),
   ),
-  SizedBox(width: 10),
+  const SizedBox(width: 10),
   TextButton(
     onPressed: () => launchURL(
       "https://script.google.com/macros/s/AKfycbyxXkgnfgfxOrxTM1oRS42ob4dJ5wkUlZG1Wuk8FO4w2kPM-FT6mcF1qkDp2DLyEc4/exec",
     ),
-    // child: Icon(Icons.photo_album, color: Colors.white),
-    child: Text('Student Profiles', style: TextStyle(color: Color(0xFF020237))),
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(Colors.white.withOpacity(0.4)),
+      backgroundColor: WidgetStateProperty.all(Colors.white.withOpacity(0.4)),
     ),
+    // child: Icon(Icons.photo_album, color: Colors.white),
+    child: const Text('Student Profiles', style: TextStyle(color: Color(0xFF020237))),
   ),
-  SizedBox(width: 10),
+  const SizedBox(width: 10),
 ];
 
 Widget content(BuildContext context) {
-  final ScrollController _scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
   return Scrollbar(
     thumbVisibility: true,
-    controller: _scrollController,
+    controller: scrollController,
     child: SingleChildScrollView(
-      controller: _scrollController,
+      controller: scrollController,
       child: Column(
         children: [
-          HomeWidget(),
-          SizedBox(height: 20),
-          VideoWidget(),
-          SizedBox(height: 20),
+          const HomeWidget(),
+          const SizedBox(height: 20),
+          const VideoWidget(),
+          const SizedBox(height: 20),
           RegisterWidget(registerKey: registerKey),
           GalleryWidget(galleryKey: galleryKey),
         ],
