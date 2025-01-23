@@ -128,13 +128,14 @@ List<Widget> _appBarButtons = [
   const SizedBox(width: 10),
   TextButton(
     onPressed: () => launchURL(
-      "https://script.google.com/macros/s/AKfycbyxXkgnfgfxOrxTM1oRS42ob4dJ5wkUlZG1Wuk8FO4w2kPM-FT6mcF1qkDp2DLyEc4/exec",
+      "https://script.google.com/macros/s/AKfycbyuZQEn8PzwL5kFpI3ME_kEnjIyDi4jfmvtbnCs3jc/dev",
     ),
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.all(Colors.white.withOpacity(0.4)),
     ),
     // child: Icon(Icons.photo_album, color: Colors.white),
-    child: const Text('Student Profiles', style: TextStyle(color: Color(0xFF020237))),
+    child: const Text('Student Profiles',
+        style: TextStyle(color: Color(0xFF020237))),
   ),
   const SizedBox(width: 10),
 ];
