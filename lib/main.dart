@@ -9,6 +9,8 @@ import 'register.dart';
 
 final GlobalKey galleryKey = GlobalKey();
 final GlobalKey registerKey = GlobalKey();
+const String profileUrl =
+    "https://script.google.com/macros/s/AKfycbxnhggc-J_H3JC0dVuBDNYcek17dkKzpu4K06aNmA5kCdbSGhlxmKSZ99_hHZA-W1Jk/exec";
 
 void main() {
   runApp(const MainApp());
@@ -79,10 +81,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// final String url = "https://ent.uom.lk/";
-// final String url =
-//     "https://script.google.com/macros/s/AKfycbwFEtyvw-uX45twwTnwVUMVVQM4aIMbN8kbMoKCK2XeOct33dOJwDHRnTjHO4mIqR-q/exec";
-
 Future<void> launchURL(String url) async {
   final Uri uri = Uri.parse(url);
 
@@ -127,9 +125,7 @@ List<Widget> _appBarButtons = [
   ),
   const SizedBox(width: 10),
   TextButton(
-    onPressed: () => launchURL(
-      "https://script.google.com/macros/s/AKfycbyuZQEn8PzwL5kFpI3ME_kEnjIyDi4jfmvtbnCs3jc/dev",
-    ),
+    onPressed: () => launchURL(profileUrl),
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.all(Colors.white.withOpacity(0.4)),
     ),
@@ -166,26 +162,6 @@ Widget _background(BuildContext context) {
   double screenHeight = MediaQuery.of(context).size.height;
   return Stack(
     children: [
-      // Container(
-      //   decoration: BoxDecoration(
-      //     gradient: LinearGradient(
-      //       begin: Alignment.topLeft,
-      //       end: Alignment.bottomRight,
-      //       colors: [
-      //         // Color.fromARGB(255, 159, 208, 230),
-      //         // Color.fromARGB(255, 157, 147, 245),
-      //         // Color(0xFF031e4b),
-      //         Color(0xFF094c69),
-      //         Color.fromARGB(255, 159, 208, 230),
-      //         Colors.white,
-      //         // Color.fromARGB(255, 159, 208, 230),
-      //         Color.fromARGB(255, 157, 147, 245),
-      //         // Color(0xFF094c69),
-      //         Color(0xFF031e4b),
-      //       ],
-      //     ),
-      //   ),
-      // ),
       Row(
         children: [
           Expanded(

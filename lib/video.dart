@@ -58,7 +58,7 @@ Widget _introVideo(context) {
     height: MediaQuery.of(context).size.height * 0.8,
     child: const HtmlWidget(
         // '''<iframe title="YouTube video player" src="https://www.youtube.com/embed/yRlwOdCK7Ho"</iframe>''',
-        '''<p align="center"><iframe width="317" height="563" src="https://www.youtube.com/embed/EUMOnM0llIY?" title="ENTC Caer Fair 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><p align="center">'''),
+        '''<p align="center"><iframe width="317" height="563" src="https://www.youtube.com/embed/EUMOnM0llIY?" title="ENTC Career Fair 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><p align="center">'''),
   );
 }
 
@@ -86,8 +86,7 @@ Widget _introWords(context) {
         ),
         const SizedBox(height: 30),
         ElevatedButton(
-          onPressed: () => launchURL(
-              "https://script.google.com/macros/s/AKfycbyuZQEn8PzwL5kFpI3ME_kEnjIyDi4jfmvtbnCs3jc/dev"),
+          onPressed: () => launchURL(profileUrl),
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(
               // const Color.fromARGB(255, 159, 208, 230),
