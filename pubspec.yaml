@@ -1,8 +1,7 @@
 name: career_fair_web
-description: "Career Fair 2025 - ENTC"
+description: "Official website for the Career Fair 2025 of the Department of Electronics and Telecommunication Engineering, University of Moratuwa."
 publish_to: 'none'
-version: 1.0.0
-
+version: 1.0.1
 environment:
   sdk: ^3.5.3
 
