@@ -27,6 +27,7 @@ The Career Fair 2025 Web App serves as a comprehensive platform to streamline th
 
 ## Deployment
 The web app is hosted on Firebase and accessible at the following link: 
+
 👉 Career Fair 2025 Web App: https://entc-career-fair-2025.web.app/
 
 ## Usage
