@@ -10,7 +10,7 @@ import 'register.dart';
 final GlobalKey galleryKey = GlobalKey();
 final GlobalKey registerKey = GlobalKey();
 const String profileUrl =
-    "https://script.google.com/macros/s/AKfycbxnhggc-J_H3JC0dVuBDNYcek17dkKzpu4K06aNmA5kCdbSGhlxmKSZ99_hHZA-W1Jk/exec";
+    "https://script.google.com/macros/s/AKfycbyPnrArptLozFvSY0GJKSTDGIDN4vcOsW0EpgLRtVbREA6xVCmbW7ESM-tMPFD_dWip/exec";
 
 void main() {
   runApp(const MainApp());
